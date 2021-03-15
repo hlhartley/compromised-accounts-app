@@ -1,30 +1,13 @@
-import React, { Component, Fragment } from 'react';
+import React from 'react';
+import Login from '../login/Login';
 import './App.css';
 
-class App extends Component {
-  constructor() {
-    super()
-  }
-
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+function App() {
+  return (
+    <div className="App">
+     <Login />
+    </div>
+  )
 }
 
 export default App;
