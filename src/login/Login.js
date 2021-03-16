@@ -2,10 +2,15 @@ import React, { useState, useEffect } from 'react';
 import '../login/Login.css';
 
 const Login = (props) => {
-  const [account, setAccount] = useState({
-    name: '',
-    password: ''
-  });
+  const {
+    users,
+    setAccount,
+    account,
+    breachedAccounts,
+    setLoggedIn,
+    setBreachedAccounts
+  } = props;
+
   const [loginErrors, setLoginErrors] = useState({
     name: '',
     password: '',
@@ -14,7 +19,7 @@ const Login = (props) => {
 
   const loginUser = (account) => {
     let canLoginUser = false;
-    props.users.forEach((user) => {
+    users.forEach((user) => {
       if (user.name === account.name && user.password === account.password) {
         canLoginUser = true;
       }
@@ -25,18 +30,20 @@ const Login = (props) => {
   const verifyBreachedAccount = async (account) => {
     try {
       const url = `https://haveibeenpwned.com/api/v3/breach/${account.name}`;
-      const response = await fetch(url);
-      if (response.status === 200) {
-        return response.json();;
-      } else if (response.status === 404) {
-        console.log('no breached accounts')
-        return false;
-      } else {
-        console.log(`${response.status} error with verify user request`, response.statusText);
-        return false;
-      }
+      return await fetch(url);
     } catch (error) {
       console.log('error with verify user request', error);
+    }
+  }
+
+  const handleResponse = async (response) => {
+    if (response.status === 200) {
+      const breachedAccount = await response.json();
+      setBreachedAccounts([...breachedAccounts, breachedAccount]);
+    } else if (response.status === 404) {
+      console.log('no breached accounts')
+    } else {
+      console.log(`${response.status} error with verify user request`, response.statusText);
     }
   }
 
@@ -55,11 +62,9 @@ const Login = (props) => {
     if (account.name && account.password) {
       const canLoginUser = loginUser(account);
       if(canLoginUser) {
-        const breachedAccount = await verifyBreachedAccount(account);
-        if(breachedAccount) {
-          props.setBreachedAccounts([...props.breachedAccounts, breachedAccount]);
-        }
-        props.setLoggedIn(true);
+        const response = await verifyBreachedAccount(account);
+        await handleResponse(response);
+        setLoggedIn(true);
       } else {
         setLoginErrors((values) => ({
           ...values,
@@ -81,30 +86,32 @@ const Login = (props) => {
         onSubmit={handleSubmit}
         className="Login-form"
       >
-        <div className="Login-input">
-          <label>Name:</label>
+        <div className="Login-input-container">
+          <label className="Login-label">Name:</label>
           <input
+            className="Login-input"
             name="name"
             type="text"
-            placeholder="name"
+            placeholder="Name"
             value={account.name}
             onChange={handleChange}>
           </input>
-          <div>{loginErrors.name}</div>
+          <div className="Login-error">{loginErrors.name}</div>
         </div>
-        <div className="Login-input">
-          <label>Password:</label>
+        <div className="Login-input-container">
+          <label className="Login-label">Password:</label>
           <input
+            className="Login-input"
             name="password"
             type="text"
             placeholder="Password"
             value={account.password}
             onChange={handleChange}>
           </input>
-          <div>{loginErrors.password}</div>
+          <div className="Login-error">{loginErrors.password}</div>
         </div>
-        <div>{loginErrors.error}</div>
-        <button>Submit</button>
+        <button className="Login-button">Submit</button>
+        <div className="Login-error">{loginErrors.error}</div>
       </form>
     </div>
   )

@@ -6,6 +6,10 @@ import Dashboard from './dashboard/Dashboard';
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [users, setUsers] = useState([]);
+  const [account, setAccount] = useState({
+    name: '',
+    password: ''
+  });
   const [breachedAccounts, setBreachedAccounts] = useState([]);
 
   useEffect(() => {
@@ -23,12 +27,15 @@ const App = () => {
           breachedAccounts={breachedAccounts}
           users={users}
           loggedIn={loggedIn}
+          account={account}
+          setAccount={setAccount}
         />
       }
       {
         loggedIn &&
         <Dashboard
           breachedAccounts={breachedAccounts}
+          account={account}
         />
       }
     </div>

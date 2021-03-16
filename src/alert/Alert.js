@@ -1,11 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 const Alert = (props) => {
+  const {
+    breachedAccounts
+  } = props;
+
   return(
     <div className="Alert">
       <div>The following accounts have been breached:</div>
       {
-        props.breachedAccounts.length > 0 && props.breachedAccounts.map((breachedAccount, index) => {
+        breachedAccounts.length > 0 && breachedAccounts.map((breachedAccount, index) => {
           return(
             <div key={index}>
               <div>{breachedAccount.Name} - {breachedAccount.BreachDate}</div>
