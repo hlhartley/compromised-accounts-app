@@ -14,12 +14,11 @@ const Login = (props) => {
 
   const loginUser = (account) => {
     let canLoginUser = false;
-    props.users.map((user) => {
+    console.log('account', account)
+    props.users.forEach((user) => {
       if (user.name === account.name && user.password === account.password) {
+        console.log('account', account)
         canLoginUser = true;
-        return;
-      } else {
-        canLoginUser = false;
       }
     })
     return canLoginUser;
