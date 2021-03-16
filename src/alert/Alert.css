@@ -1,0 +1,8 @@
+.fa-exclamation-triangle {
+  color: #f9cf36;
+}
+
+.Alert-message {
+  display: flex;
+  align-items: center;
+}

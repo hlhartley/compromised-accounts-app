@@ -8,7 +8,10 @@ const Alert = (props) => {
 
   return(
     <div className="Alert">
-      <div>The following accounts have been breached:</div>
+      <div className="Alert-message">
+        <i class="fas fa-exclamation-triangle"></i>
+        <div>The following accounts have been breached:</div>
+      </div>
       {
         breachedAccounts.length > 0 && breachedAccounts.map((breachedAccount, index) => {
           return(
