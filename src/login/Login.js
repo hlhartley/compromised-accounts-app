@@ -14,10 +14,8 @@ const Login = (props) => {
 
   const loginUser = (account) => {
     let canLoginUser = false;
-    console.log('account', account)
     props.users.forEach((user) => {
       if (user.name === account.name && user.password === account.password) {
-        console.log('account', account)
         canLoginUser = true;
       }
     })
@@ -57,9 +55,9 @@ const Login = (props) => {
     e.preventDefault();
     if (account.name && account.password) {
       const canLoginUser = loginUser(account);
-      if(canLoginUser) {
+      if (canLoginUser) {
         const breachedAccount = await verifyBreachedAccounts(account);
-        if(breachedAccount) {
+        if (breachedAccount) {
           props.setBreachedAccounts([...props.breachedAccounts, breachedAccount]);
         }
         props.setLoggedIn(true);
