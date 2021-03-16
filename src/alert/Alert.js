@@ -1,4 +1,5 @@
 import React from 'react';
+import './Alert.css';
 
 const Alert = (props) => {
   const {
@@ -11,9 +12,9 @@ const Alert = (props) => {
       {
         breachedAccounts.length > 0 && breachedAccounts.map((breachedAccount, index) => {
           return(
-            <div key={index}>
-              <div>{breachedAccount.Name} - {breachedAccount.BreachDate}</div>
-            </div>
+            <ul key={index}>
+              <li>{breachedAccount.Name} - {breachedAccount.BreachDate}</li>
+            </ul>
           )
         })
       }

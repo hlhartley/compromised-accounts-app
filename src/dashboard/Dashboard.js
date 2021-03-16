@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Alert from '../alert/Alert';
+import './Dashboard.css';
 
 const Dashboard = (props) => {
   const {
@@ -9,7 +10,7 @@ const Dashboard = (props) => {
 
   return(
     <div className="Dashboard">
-      <div>Welcome, {account.name}!</div>
+      <h1>Welcome, {account.name}!</h1>
       {
         breachedAccounts.length > 0 ? <Alert breachedAccounts={breachedAccounts}/> : 'You have 0 breached accounts'
       }
