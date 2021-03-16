@@ -10,9 +10,10 @@ const Dashboard = (props) => {
 
   return(
     <div className="Dashboard">
-      <h1>Welcome, {account.name}!</h1>
+      <div className="Dashboard-header">{account.name}'s Dashboard</div>
+      <h2>Welcome, {account.name}!</h2>
       {
-        breachedAccounts.length > 0 ? <Alert breachedAccounts={breachedAccounts}/> : 'You have 0 breached accounts'
+        breachedAccounts.length > 0 ? <Alert breachedAccounts={breachedAccounts}/> : ''
       }
     </div>
   )

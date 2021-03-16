@@ -2,7 +2,18 @@
   color: #f9cf36;
 }
 
+.Alert {
+  background-color: #fbfafa;
+  border-radius: 6px;
+  padding: 20px;
+}
+
 .Alert-message {
   display: flex;
   align-items: center;
+}
+
+.Alert-header {
+  margin-left: 5px;
+  font-weight: 600;
 }

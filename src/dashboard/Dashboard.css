@@ -2,5 +2,17 @@
   align-items: center;
   display: flex;
   flex-direction: column;
+  height: 100vh;
+}
+
+.Dashboard-header {
+  align-items: center;
+  background-color: #bee3e9;
+  display: flex;
+  font-size: 30px;
+  font-weight: 600;
+  height: 7vh;
   justify-content: center;
+  letter-spacing: 1px;
+  width: 100vw;
 }

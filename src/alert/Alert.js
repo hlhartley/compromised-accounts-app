@@ -10,13 +10,16 @@ const Alert = (props) => {
     <div className="Alert">
       <div className="Alert-message">
         <i class="fas fa-exclamation-triangle"></i>
-        <div>The following accounts have been breached:</div>
+        <div className="Alert-header">Breached accounts:</div>
       </div>
       {
         breachedAccounts.length > 0 && breachedAccounts.map((breachedAccount, index) => {
           return(
             <ul key={index}>
-              <li>{breachedAccount.Name} - {breachedAccount.BreachDate}</li>
+              <li>
+                {breachedAccount.Name} -
+                breached: {breachedAccount.BreachDate}
+              </li>
             </ul>
           )
         })
