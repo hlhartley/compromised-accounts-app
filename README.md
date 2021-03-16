@@ -5,6 +5,13 @@
 - Hits external API to check if a user's account(s) have been compromised
 - Displays breached accounts on user dashboard
 
+## Project Goals
+- Implement React Hooks
+- Use all functional components rather than use class components
+- Use best React practices & file structure (each component has its own folder, JS file and CSS file)
+- Use best JS practices: destructuring, keeping functions simple/small, not directly manipulating arr/obj values
+- Use best CSS practices: each folder has its own CSS file, class names are based on Class name
+
 ## External API
 [Have I Been Pwned API](https://haveibeenpwned.com/API/v3#BreachModel)
 
@@ -63,3 +70,6 @@ User with Compromised Accounts (user name: Adobe, password: pw):
 
 User with No Compromised Accounts (user name: Regular, password: pw):
 ![No compromised accounts user](dashboard-noncompromised-account.png)
+
+**Future Goals & Enhancements**
+- Testing React hooks
