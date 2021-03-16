@@ -9,6 +9,7 @@
 [Have I Been Pwned API](https://haveibeenpwned.com/API/v3#BreachModel)
 
 **Getting a single breached site**
+
 Sometimes just a single breach is required and this can be retrieved by the breach "name". This is the stable value which may or may not be the same as the breach "title" (which can change). See the breach model below for more info.
 
 `GET https://haveibeenpwned.com/api/v3/breach/{name}`
