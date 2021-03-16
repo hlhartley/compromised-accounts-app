@@ -65,7 +65,7 @@ const Login = (props) => {
         className="Login-form"
       >
         <div className="Login-input">
-          <label>name:</label>
+          <label>Name:</label>
           <input
             name="name"
             type="text"
