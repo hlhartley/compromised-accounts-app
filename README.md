@@ -1,6 +1,6 @@
 # compromised-accounts-app
 
-## App hosted on AWS
+## Link to app hosted on AWS
 [Compromised Accounts App](http://compromised-accounts-app.s3-website-us-west-2.amazonaws.com/)
 
 ## Description
