@@ -3,13 +3,31 @@ import '../login/Login.css';
 
 const Login = (props) => {
   const [account, setAccount] = useState({
-    email: '',
+    name: '',
     password: ''
   });
   const [loginErrors, setLoginErrors] = useState({
-    email: '',
+    name: '',
     password: ''
   });
+
+  const verifyBreachedAccounts = async (account) => {
+    try {
+      const url = `https://haveibeenpwned.com/api/v3/breach/${account.name}`;
+      const response = await fetch(url);
+      const breachedAccount = await response.json();
+      if (response.status === 200) {
+        return breachedAccount;
+      } else if (response.status === 404) {
+        console.log('no breached accounts')
+        return false;
+      } else {
+        console.log(`${response.status} error with verify user request`, response.statusText);
+      }
+    } catch (error) {
+      console.log('error with verify user request', error);
+    }
+  }
 
   const handleChange = (e) => {
     e.persist();
@@ -21,16 +39,22 @@ const Login = (props) => {
     }));
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+    const {
+      name,
+      password
+    } = account;
     e.preventDefault();
-    if (account.email && account.password) {
+    if (name && password) {
       props.loginUser(account);
+      const breachedAccount = await verifyBreachedAccounts(account);
+      props.setBreachedAccounts([...props.breachedAccounts, breachedAccount]);
     } else {
       setLoginErrors((values) => ({
         ...values,
-        email: account.email ? '' : 'Please enter a valid email',
-        password: account.password ? '' : 'Please enter a valid password'
-      }))
+        name: name ? '' : 'Please enter a valid name',
+        password: password ? '' : 'Please enter a valid password'
+      }));
     }
   }
 
@@ -41,15 +65,15 @@ const Login = (props) => {
         className="Login-form"
       >
         <div className="Login-input">
-          <label>Email:</label>
+          <label>name:</label>
           <input
-            name="email"
+            name="name"
             type="text"
-            placeholder="Email"
-            value={account.email}
+            placeholder="name"
+            value={account.name}
             onChange={handleChange}>
           </input>
-          <div>{loginErrors.email}</div>
+          <div>{loginErrors.name}</div>
         </div>
         <div className="Login-input">
           <label>Password:</label>

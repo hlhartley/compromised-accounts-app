@@ -1,12 +1,12 @@
 const mockUsers = () => {
   return [
     {
-      email: 'user1@email.com',
-      password: 'pw1'
+      name: 'Adobe',
+      password: 'pw'
     },
     {
-      email: 'user2@email.com',
-      password: 'pw2'
+      name: 'Regular',
+      password: 'pw'
     }
   ];
 }

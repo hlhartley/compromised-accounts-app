@@ -5,6 +5,7 @@ import mockUsers from './users/Users';
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [users, setUsers] = useState([]);
+  const [breachedAccounts, setBreachedAccounts] = useState([]);
 
   useEffect(() => {
     if(mockUsers) {
@@ -27,6 +28,8 @@ const App = () => {
       {!loggedIn &&
         <Login
           loginUser={loginUser}
+          setBreachedAccounts={setBreachedAccounts}
+          breachedAccounts={breachedAccounts}
         />
       }
       {loggedIn && <div>Welcome!</div>}
