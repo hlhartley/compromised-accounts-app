@@ -1,70 +1,79 @@
-# Getting Started with Create React App
+# compromised-accounts-app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## App hosted on AWS
+[Compromised Accounts App](http://compromised-accounts-app.s3-website-us-west-2.amazonaws.com/)
 
-## Available Scripts
+## Description
+- Includes login functionality with basic input validation
+- Hits external API to check if a user's account(s) have been compromised
+- Displays breached accounts on user dashboard
+- Hosted on AWS
 
-In the project directory, you can run:
+## Project Goals
+- Implement React Hooks
+- Use all functional components rather than use class components
+- Use best React practices & file structure (each component has its own folder, JS file and CSS file)
+- Use best JS practices: destructuring, keeping functions simple/small, not directly manipulating arr/obj values
+- Use best CSS practices: each folder has its own CSS file, class names are based on Class name
 
-### `yarn start`
+## External API
+[Have I Been Pwned API](https://haveibeenpwned.com/API/v3#BreachModel)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+**Getting a single breached site**
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Sometimes just a single breach is required and this can be retrieved by the breach "name". This is the stable value which may or may not be the same as the breach "title" (which can change). See the breach model below for more info.
 
-### `yarn test`
+`GET https://haveibeenpwned.com/api/v3/breach/{name}`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Sample breached account response:**
+```
+[
+  {
+    "Name":"Adobe",
+    "Title":"Adobe",
+    "Domain":"adobe.com",
+    "BreachDate":"2013-10-04",
+    "AddedDate":"2013-12-04T00:00Z",
+    "ModifiedDate":"2013-12-04T00:00Z",
+    "PwnCount":152445165,
+    "Description":"In October 2013, 153 million Adobe accounts were breached with each containing an internal ID, username, email, <em>encrypted</em> password and a password hint in plain text. The password cryptography was poorly done and <a href=\"http://stricture-group.com/files/adobe-top100.txt\" target=\"_blank\" rel=\"noopener\">many were quickly resolved back to plain text</a>. The unencrypted hints also <a href=\"http://www.troyhunt.com/2013/11/adobe-credentials-and-serious.html\" target=\"_blank\" rel=\"noopener\">disclosed much about the passwords</a> adding further to the risk that hundreds of millions of Adobe customers already faced.",
+    "DataClasses":["Email addresses","Password hints","Passwords","Usernames"],
+    "IsVerified":true,
+    "IsFabricated":false,
+    "IsSensitive":false,
+    "IsRetired":false,
+    "IsSpamList":false,
+    "LogoPath":"https://haveibeenpwned.com/Content/Images/PwnedLogos/Adobe.png"
+  },
+  {
+    "Name":"BattlefieldHeroes",
+    "Title":"Battlefield Heroes",
+    "Domain":"battlefieldheroes.com",
+    "BreachDate":"2011-06-26",
+    "AddedDate":"2014-01-23T13:10Z",
+    "ModifiedDate":"2014-01-23T13:10Z",
+    "PwnCount":530270,
+    "Description":"In June 2011 as part of a final breached data dump, the hacker collective &quot;LulzSec&quot; <a href=\"http://www.rockpapershotgun.com/2011/06/26/lulzsec-over-release-battlefield-heroes-data\" target=\"_blank\" rel=\"noopener\">obtained and released over half a million usernames and passwords from the game Battlefield Heroes</a>. The passwords were stored as MD5 hashes with no salt and many were easily converted back to their plain text versions.",
+    "DataClasses":["Passwords","Usernames"],
+    "IsVerified":true,
+    "IsFabricated":false,
+    "IsSensitive":false,
+    "IsRetired":false,
+    "IsSpamList":false,
+    "LogoPath":"https://haveibeenpwned.com/Content/Images/PwnedLogos/BattlefieldHeroes.png"
+  }
+]
+```
 
-### `yarn build`
+**Screenshots**
+Login Page:
+![Login page](login-page.png)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+User with Compromised Accounts (user name: Adobe, password: pw):
+![Compromised accounts user](dashboard-compromised-account.png)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+User with No Compromised Accounts (user name: Regular, password: pw):
+![No compromised accounts user](dashboard-noncompromised-account.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Future Goals & Enhancements**
+- TDD & testing React hooks
