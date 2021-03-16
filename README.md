@@ -56,10 +56,10 @@ Sometimes just a single breach is required and this can be retrieved by the brea
 
 **Screenshots**
 Login Page:
-!(Login page)[compromised-accounts-app/login-page.png]
+![Login page](login-page.png)
 
 User with Compromised Accounts (user name: Adobe, password: pw):
-!(Compromised accounts user)[compromised-accounts-app/dashboard-compromised-account.png]
+![Compromised accounts user](dashboard-compromised-account.png)
 
 User with No Compromised Accounts (user name: Regular, password: pw):
-!(No compromised accounts user)[compromised-accounts-app/noncompromised-accounts-app/dashboard-compromised-account.png]
+![No compromised accounts user](noncompromised-accounts-app/dashboard-compromised-account.png)
