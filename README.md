@@ -1,9 +1,13 @@
 # compromised-accounts-app
 
+## App hosted on AWS
+(Compromised Accounts App)[http://compromised-accounts-app.s3-website-us-west-2.amazonaws.com/]
+
 ## Description
 - Includes login functionality with basic input validation
 - Hits external API to check if a user's account(s) have been compromised
 - Displays breached accounts on user dashboard
+- Hosted on AWS
 
 ## Project Goals
 - Implement React Hooks
