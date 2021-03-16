@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import '../login/Login.css';
+
 const verifyUser = (account) => {
   const users = [
     {
@@ -43,14 +45,27 @@ const Login = (props) => {
   }
 
   return(
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div class="Login">
+      <form
+        onSubmit={handleSubmit}
+        class="Login-form"
+      >
         <label>Email:</label>
-        <input name="email" value={account.email} onChange={handleChange}></input>
-        {account.email}
+        <input
+          name="email"
+          type="text"
+          placeholder="Email"
+          value={account.email}
+          onChange={handleChange}>
+        </input>
         <label>Password:</label>
-        <input name="password" value={account.password} onChange={handleChange}></input>
-        {account.password}
+        <input
+          name="password"
+          type="text"
+          placeholder="Password"
+          value={account.password}
+          onChange={handleChange}>
+        </input>
         <button>Submit</button>
       </form>
     </div>

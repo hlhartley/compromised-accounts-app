@@ -3,7 +3,7 @@ import Login from './login/Login';
 
 const App = () => {
   return(
-    <div>
+    <div className="App">
       <Login />
     </div>
   )
