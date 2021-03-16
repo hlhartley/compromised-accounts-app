@@ -1,33 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import '../login/Login.css';
 
-const verifyUser = (account) => {
-  const users = [
-    {
-      email: 'user1@email.com',
-      password: 'pw1'
-    },
-    {
-      email: 'user2@email.com',
-      password: 'pw2'
-    }
-  ];
-
-  users.map((user) => {
-    if (user.email === account.email && user.password === account.password) {
-      console.log('SUCCESS')
-    } else {
-      console.log('FAIL')
-    }
-  })
-}
-
 const Login = (props) => {
   const [account, setAccount] = useState({
     email: '',
     password: ''
   });
-
 
   const handleChange = (e) => {
     e.persist();
@@ -41,11 +19,11 @@ const Login = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    verifyUser(account);
+    props.loginUser(account);
   }
 
   return(
-    <div class="Login">
+    <div className="Login">
       <form
         onSubmit={handleSubmit}
         class="Login-form"
