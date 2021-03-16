@@ -5,9 +5,9 @@ const Alert = (props) => {
     <div className="Alert">
       <div>The following accounts have been breached:</div>
       {
-        props.breachedAccounts.map((breachedAccount) => {
+        props.breachedAccounts.length > 0 && props.breachedAccounts.map((breachedAccount, index) => {
           return(
-            <div>
+            <div key={index}>
               <div>{breachedAccount.Name} - {breachedAccount.BreachDate}</div>
             </div>
           )

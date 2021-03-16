@@ -8,8 +8,22 @@ const Login = (props) => {
   });
   const [loginErrors, setLoginErrors] = useState({
     name: '',
-    password: ''
+    password: '',
+    error: '',
   });
+
+  const loginUser = (account) => {
+    let canLoginUser = false;
+    props.users.map((user) => {
+      if (user.name === account.name && user.password === account.password) {
+        canLoginUser = true;
+        return;
+      } else {
+        canLoginUser = false;
+      }
+    })
+    return canLoginUser;
+  }
 
   const verifyBreachedAccounts = async (account) => {
     try {
@@ -23,6 +37,7 @@ const Login = (props) => {
         return false;
       } else {
         console.log(`${response.status} error with verify user request`, response.statusText);
+        return false;
       }
     } catch (error) {
       console.log('error with verify user request', error);
@@ -40,20 +55,26 @@ const Login = (props) => {
   }
 
   const handleSubmit = async (e) => {
-    const {
-      name,
-      password
-    } = account;
     e.preventDefault();
-    if (name && password) {
-      props.loginUser(account);
-      const breachedAccount = await verifyBreachedAccounts(account);
-      props.setBreachedAccounts([...props.breachedAccounts, breachedAccount]);
+    if (account.name && account.password) {
+      const canLoginUser = loginUser(account);
+      if(canLoginUser) {
+        const breachedAccount = await verifyBreachedAccounts(account);
+        if(breachedAccount) {
+          props.setBreachedAccounts([...props.breachedAccounts, breachedAccount]);
+        }
+        props.setLoggedIn(true);
+      } else {
+        setLoginErrors((values) => ({
+          ...values,
+          error: 'Your name or password is incorrect'
+        }));
+      }
     } else {
       setLoginErrors((values) => ({
         ...values,
-        name: name ? '' : 'Please enter a valid name',
-        password: password ? '' : 'Please enter a valid password'
+        name: account.name ? '' : 'Please enter a valid name',
+        password: account.password ? '' : 'Please enter a valid password'
       }));
     }
   }
@@ -86,6 +107,7 @@ const Login = (props) => {
           </input>
           <div>{loginErrors.password}</div>
         </div>
+        <div>{loginErrors.error}</div>
         <button>Submit</button>
       </form>
     </div>
