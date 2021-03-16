@@ -26,7 +26,7 @@ const Login = (props) => {
     <div className="Login">
       <form
         onSubmit={handleSubmit}
-        class="Login-form"
+        className="Login-form"
       >
         <label>Email:</label>
         <input
