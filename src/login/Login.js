@@ -6,6 +6,10 @@ const Login = (props) => {
     email: '',
     password: ''
   });
+  const [loginErrors, setLoginErrors] = useState({
+    email: '',
+    password: ''
+  });
 
   const handleChange = (e) => {
     e.persist();
@@ -19,7 +23,15 @@ const Login = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.loginUser(account);
+    if (account.email && account.password) {
+      props.loginUser(account);
+    } else {
+      setLoginErrors((values) => ({
+        ...values,
+        email: account.email ? '' : 'Please enter a valid email',
+        password: account.password ? '' : 'Please enter a valid password'
+      }))
+    }
   }
 
   return(
@@ -28,22 +40,28 @@ const Login = (props) => {
         onSubmit={handleSubmit}
         className="Login-form"
       >
-        <label>Email:</label>
-        <input
-          name="email"
-          type="text"
-          placeholder="Email"
-          value={account.email}
-          onChange={handleChange}>
-        </input>
-        <label>Password:</label>
-        <input
-          name="password"
-          type="text"
-          placeholder="Password"
-          value={account.password}
-          onChange={handleChange}>
-        </input>
+        <div className="Login-input">
+          <label>Email:</label>
+          <input
+            name="email"
+            type="text"
+            placeholder="Email"
+            value={account.email}
+            onChange={handleChange}>
+          </input>
+          <div>{loginErrors.email}</div>
+        </div>
+        <div className="Login-input">
+          <label>Password:</label>
+          <input
+            name="password"
+            type="text"
+            placeholder="Password"
+            value={account.password}
+            onChange={handleChange}>
+          </input>
+          <div>{loginErrors.password}</div>
+        </div>
         <button>Submit</button>
       </form>
     </div>

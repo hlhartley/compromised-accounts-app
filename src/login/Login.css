@@ -1,5 +1,19 @@
+.Login {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
+
 .Login-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 50%;
+}
+
+.Login-input {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
 }
