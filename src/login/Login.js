@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
-const verification = (account) => {
+const verifyUser = (account) => {
   const users = [
     {
       email: 'user1@email.com',
@@ -12,45 +11,46 @@ const verification = (account) => {
     }
   ];
 
-  users.forEach((user) => {
+  users.map((user) => {
     if (user.email === account.email && user.password === account.password) {
-      return 'SUCCESS'
+      console.log('SUCCESS')
     } else {
-      return 'FAIL'
+      console.log('FAIL')
     }
   })
 }
 
 const Login = (props) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [account, setAccount] = useState({ email: '', password: '' });
+  const [account, setAccount] = useState({
+    email: '',
+    password: ''
+  });
+
 
   const handleChange = (e) => {
+    e.persist();
     const name = e.target.name;
-    const value = e.target.value;
-
-    if (name === 'email') {
-      setEmail(value);
-    } else if (name === 'password') {
-      setPassword(value);
-    }
+    const value = e.target.value
+    setAccount((values) => ({
+      ...values,
+      [name]: value
+    }));
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setAccount({ email, password});
+    verifyUser(account);
   }
 
   return(
     <div>
       <form onSubmit={handleSubmit}>
         <label>Email:</label>
-        <input name="email" value={email} onChange={handleChange}></input>
-        {email}
+        <input name="email" value={account.email} onChange={handleChange}></input>
+        {account.email}
         <label>Password:</label>
-        <input name="password" value={password} onChange={handleChange}></input>
-        {password}
+        <input name="password" value={account.password} onChange={handleChange}></input>
+        {account.password}
         <button>Submit</button>
       </form>
     </div>
