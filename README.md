@@ -55,9 +55,11 @@ Sometimes just a single breach is required and this can be retrieved by the brea
 ```
 
 **Screenshots**
-Login Page
+Login Page:
+!(Login page)[login-page.png]
 
-User with Compromised Accounts (user name: Adobe, password: pw)
+User with Compromised Accounts (user name: Adobe, password: pw):
+!(Compromised accounts user)[compromised-accounts.png]
 
-
-User with No Compromised Accounts (user name: Regular, password: pw)
+User with No Compromised Accounts (user name: Regular, password: pw):
+!(No compromised accounts user)[compromised-accounts.png]
