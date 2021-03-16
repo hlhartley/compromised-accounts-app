@@ -62,4 +62,4 @@ User with Compromised Accounts (user name: Adobe, password: pw):
 ![Compromised accounts user](dashboard-compromised-account.png)
 
 User with No Compromised Accounts (user name: Regular, password: pw):
-![No compromised accounts user](noncompromised-accounts-app/dashboard-compromised-account.png)
+![No compromised accounts user](dashboard-noncompromised-account.png)
