@@ -37,10 +37,10 @@ const Login = (props) => {
   }
 
   const handleResponse = async (response) => {
-    if (response.status === 200) {
+    if (response.status === 200) { // 200 = breached account
       const breachedAccount = await response.json();
       setBreachedAccounts([...breachedAccounts, breachedAccount]);
-    } else if (response.status === 404) {
+    } else if (response.status === 404) { // 404 = not a breached account
       console.log('no breached accounts')
     } else {
       console.log(`${response.status} error with verify user request`, response.statusText);
@@ -58,7 +58,7 @@ const Login = (props) => {
   }
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); // prevent the page from refreshing
     if (account.name && account.password) {
       const canLoginUser = loginUser(account);
       if(canLoginUser) {

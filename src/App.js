@@ -13,7 +13,8 @@ const App = () => {
   const [breachedAccounts, setBreachedAccounts] = useState([]);
 
   useEffect(() => {
-    if(mockUsers) {
+    if (mockUsers) {
+      // mockUsers represents the users in our database
       setUsers(mockUsers)
     }
   }, [mockUsers]);

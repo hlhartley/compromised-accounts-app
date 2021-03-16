@@ -1,10 +1,10 @@
 .Login {
-  font-family: proxima-nova, sans-serif;
   align-items: center;
   background-color: #bee3e9;
   display: flex;
-  justify-content: center;
+  font-family: proxima-nova, sans-serif;
   height: 100vh;
+  justify-content: center;
 }
 
 .Login-form {
@@ -20,11 +20,11 @@
 }
 
 .Login-label {
-  text-transform: uppercase;
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 1px;
   margin-bottom: 5px;
+  text-transform: uppercase;
 }
 
 .Login-input {
