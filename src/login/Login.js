@@ -22,13 +22,12 @@ const Login = (props) => {
     return canLoginUser;
   }
 
-  const verifyBreachedAccounts = async (account) => {
+  const verifyBreachedAccount = async (account) => {
     try {
       const url = `https://haveibeenpwned.com/api/v3/breach/${account.name}`;
       const response = await fetch(url);
-      const breachedAccount = await response.json();
       if (response.status === 200) {
-        return breachedAccount;
+        return response.json();;
       } else if (response.status === 404) {
         console.log('no breached accounts')
         return false;
@@ -55,9 +54,9 @@ const Login = (props) => {
     e.preventDefault();
     if (account.name && account.password) {
       const canLoginUser = loginUser(account);
-      if (canLoginUser) {
-        const breachedAccount = await verifyBreachedAccounts(account);
-        if (breachedAccount) {
+      if(canLoginUser) {
+        const breachedAccount = await verifyBreachedAccount(account);
+        if(breachedAccount) {
           props.setBreachedAccounts([...props.breachedAccounts, breachedAccount]);
         }
         props.setLoggedIn(true);

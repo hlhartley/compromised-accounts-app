@@ -29,7 +29,6 @@ const App = () => {
         loggedIn &&
         <Dashboard
           breachedAccounts={breachedAccounts}
-          users={users}
         />
       }
     </div>
